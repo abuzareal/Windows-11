@@ -1,6 +1,7 @@
 import "./Footer.scss";
 import MenuIcon from "./MenuIcon";
-import images from "../../data/images";
+import images from "../../data/images"
+
 
 const Footer = () => {
 
@@ -9,8 +10,9 @@ const Footer = () => {
       <div className="widget"></div>
       <div className="footer-menu">
         {images.map((image: any) => (
-          <MenuIcon icon={image.src} name={image.name} />
+          <MenuIcon key={image.name} icon={image.src} name={image.name} />
         ))}
+
       </div>
       <div className="widget"></div>
     </footer>

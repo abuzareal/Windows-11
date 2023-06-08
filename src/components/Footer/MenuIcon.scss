@@ -1,0 +1,11 @@
+img {
+  height: 110%;
+
+  padding: 5px;
+  border-radius: 5px;
+  &:hover {
+    background: #00000022;
+    backdrop-filter: blur(10px);
+    
+  }
+}

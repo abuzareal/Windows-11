@@ -1,16 +1,11 @@
+import windows from "../assets/icons/w12.svg"
+
 const images = [
   {
-    name: "windows",
-    src: "./assets/icons/Windows 11.png",
+    name: "windowssd",
+    src: windows,
   },
-  {
-    name: "windows",
-    src: "./assets/icons/Windows 11.png",
-  },
-  {
-    name: "windows",
-    src: "./assets/icons/Windows 11.png",
-  },
+  
 ];
 
 export default images;
