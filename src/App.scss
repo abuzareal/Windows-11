@@ -5,12 +5,16 @@
   
   transition:all 200ms ease-in-out;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+  &::-webkit-scrollbar{
+   display:none
+  }
 }
 
 .app{
   height:100vh;
   width:100vw;
-  background-image: url("https://r4.wallpaperflare.com/wallpaper/414/160/33/mac-os-x-os-x-big-sur-hd-wallpaper-863ba887a4a08dd3896af12ae4bd7792.jpg");
+  background-image: url("https://wallpapershome.com/images/pages/pic_h/23824.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
