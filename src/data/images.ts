@@ -8,4 +8,6 @@ const images = [
   
 ];
 
+export const gif = "https://media.giphy.com/media/SRwKeOppx3YqzP5oRP/giphy.gif";
+
 export default images;

@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./News.scss";
 import axios from "axios";
-import gif from "https://media.giphy.com/media/RgzryV9nRCMHPVVXPV/giphy.gif";
+import { gif } from "../../data/images";
 
 const News = () => {
-  const [news, setNews] = useState([]); // Add a new state variable, "news", to the component
+  const [news, setNews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
     const fetchNews = async () => {
       const options = {
         method: "GET",
         url: "https://newsdata2.p.rapidapi.com/sources",
-          params: {
-              language: "en",
-              country: "US",
-                category: "Technology",
-          },
+        params: {
+          language: "en",
+          country: "US",
+          category: "Technology",
+        },
         headers: {
           "X-RapidAPI-Key":
             "4e8a29ced8msh70ccb8b4c63f94ep157a4cjsnddad9329e7ab",
@@ -26,20 +28,32 @@ const News = () => {
         const response = await axios.request(options);
         console.log(response.data);
         setNews(response.data.results);
+        setIsLoading(false); // Set loading state to false after fetching news
       } catch (error) {
         console.error(error);
+        setIsLoading(false); // Set loading state to false if an error occurs
       }
     };
 
     fetchNews();
-  }, []); // Add an empty dependency array to run the effect only once
+  }, []);
 
   return (
     <>
       <div className="news-container">
         <h2>News Feed 📰</h2>
         <hr />
-        {news ? (
+        {isLoading ? (
+          <p>
+            <img
+              src={gif}
+              alt=""
+              style={{
+                width: "100px",
+              }}
+            />
+          </p> // Render the loader when isLoading is true
+        ) : news.length > 0 ? (
           news.map((newsItem: any) => (
             <div className="news-item" key={newsItem.id}>
               <h3>
@@ -49,15 +63,12 @@ const News = () => {
               <hr />
               <p>{newsItem.description}</p>
               <a href={newsItem.url} target="_blank" rel="noreferrer">
-                {" "}
-                Read More{" "}
+                Read More
               </a>
             </div>
           ))
         ) : (
-                      <p>
-                          There are no news
-          </p>
+          <p>There are no news</p>
         )}
         <div className="news-footer-shadow"></div>
       </div>
