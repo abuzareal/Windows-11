@@ -4,6 +4,7 @@ import images from "../../data/images";
 import { useEffect, useState } from "react";
 
 const Footer = () => {
+
   const [timeOfDay, setTimeOfDay] = useState("night");
   const time = new Date(Date.now()).getHours();
   console.log(time);

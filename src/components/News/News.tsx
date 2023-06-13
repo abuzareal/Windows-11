@@ -25,7 +25,7 @@ const News = () => {
       };
 
       try {
-        const response = await axios.request(options);
+        const response = fetch(options);
         console.log(response.data);
         setNews(response.data.results);
         setIsLoading(false); // Set loading state to false after fetching news
