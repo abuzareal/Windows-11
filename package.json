@@ -27,5 +27,5 @@
     "typescript": "^5.0.2",
     "vite": "^4.3.9"
   },
-  "proxy":"http://nischal.work"
+  "proxy": "https://cors-anywhere.herokuapp.com/"
 }

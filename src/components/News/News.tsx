@@ -4,39 +4,39 @@ import { gif } from "../../data/images";
 import axios from "axios";
 
 const News = () => {
-  const [news, setNews] = useState<News[]>([]);
+  const [news, setNews] = useState<any>([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  type News = {
-    id: string;
-    name: string;
-    url: string;
-    description: string;
-  };
 
   useEffect(() => {
     const fetchNews = async () => {
-      const url =
-        "https://api.newsdata.io/v1/news?apikey=YOUR_API_KEY&q=technology";
-
-      try {
-        const response = await axios.get<News[]>(url, {
-          headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-          },
-        });
-        console.log(response.data);
-        setNews(response.data);
-        setIsLoading(false); // Set loading state to false after fetching news
-      } catch (error) {
-        console.error(error);
-        setIsLoading(false); // Set loading state to false if an error occurs
-      }
+    
+    const options = {
+      method: "GET",
+      url: "https://newsdata2.p.rapidapi.com/sources",
+      params: {
+        country: "us",
+        category: "technology",
+        language: "en",
+      },
+      headers: {
+        "X-RapidAPI-Key": "4e8a29ced8msh70ccb8b4c63f94ep157a4cjsnddad9329e7ab",
+        "X-RapidAPI-Host": "newsdata2.p.rapidapi.com",
+      },
     };
 
+    try {
+      const response = await axios.request(options);
+      console.log(response.data.results);
+      setNews(response.data.results);
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+      
+    }
+    };
     fetchNews();
   }, []);
+  
 
   return (
     <div className="news-container">
@@ -53,7 +53,7 @@ const News = () => {
           />
         </p>
       ) : news.length > 0 ? (
-        news.map((newsItem) => (
+        news.map((newsItem:any) => (
           <div className="news-item" key={newsItem.id}>
             <h3>
               <span id="title">{newsItem.name}</span>
