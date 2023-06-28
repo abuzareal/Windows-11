@@ -7,7 +7,7 @@ import Weather from "./components/Weather/Weather";
 function App() {
   return (
     <div className="app">
-      <News />
+      {/* <News /> */}
       <Notification />
       <Weather />
       <Footer />

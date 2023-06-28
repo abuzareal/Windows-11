@@ -1,20 +1,36 @@
 import { useEffect, useState } from "react";
 import "./Weather.scss";
 import axios from "axios";
+import { MdOutlineLocationOn } from "react-icons/md";
 
 const Weather = () => {
   const [data, setData] = useState<Data | null>(null);
-  const [location, setLocation] = useState("Nashik");
+  const [location, setLocation] = useState("Pune");
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=146f21d5dd7e67d75fc1ffbbcbe370ba`;
 
   useEffect(() => {
-    const weather = () => {
-      axios.get(url).then((response) => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(url);
         setData(response.data);
-      });
+      } catch (error) {
+        console.error(error);
+      }
     };
-    weather();
+
+    fetchData();
   }, [location]);
+
+  const getFormattedTime = (timestamp: number) => {
+    const date = new Date(timestamp * 1000);
+    return date.toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
+  const sunriseTime = data ? getFormattedTime(data.sys.sunrise) : null;
+  const sunsetTime = data ? getFormattedTime(data.sys.sunset) : null;
 
   type Data = {
     name: string;
@@ -33,20 +49,28 @@ const Weather = () => {
 
   return (
     <div className="weather">
-      <h3>Weather</h3>
-      <hr />
-      {data?.name !== undefined && (
+      {data?.name && (
         <div className="weather-data">
-          <p>
+          <h1 className="temp">{Math.round(data.main.temp)}°C</h1>
+          <h3 className="main">{data.weather[0].main}</h3>
+          <br />
+
+          <MdOutlineLocationOn />
+          <span className="location">
             {data.name}, {data.sys ? data.sys.country : null}
-          </p>
-          <p>{data.weather[0].main}</p>
-          <p>
-            {data.main.temp}, {data.main.pressure}, {data.main.humidity}
-          </p>
-          <p>
-            {data.sys.sunrise}, {data.sys.sunset}
-          </p>
+          </span>
+          <br />
+          <span className="">
+            Pressure: {data.main.pressure}
+            <br />
+            Humidity: {data.main.humidity}
+            <br />
+          </span>
+          <span>
+            Sunrise: {sunriseTime}
+            <br />
+            Sunset: {sunsetTime}
+          </span>
         </div>
       )}
     </div>

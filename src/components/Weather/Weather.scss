@@ -8,7 +8,7 @@
   position: absolute;
   left: 10px;
   top: 30px;
-  padding: 10px;
+  padding: 20px;
   color: white;
   font-weight: 100;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -31,4 +31,15 @@
     width: 100%;
     margin: 10px 0px;
   }
+
+}
+
+.location{
+    font-size: 1.5rem;
+    padding: 5px;
+    justify-content: space-evenly;
+}
+
+.temp{
+  font-size: 50px;
 }
