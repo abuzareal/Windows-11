@@ -9,34 +9,32 @@ const News = () => {
 
   useEffect(() => {
     const fetchNews = async () => {
-    
-    const options = {
-      method: "GET",
-      url: "https://newsdata2.p.rapidapi.com/sources",
-      params: {
-        country: "us",
-        category: "technology",
-        language: "en",
-      },
-      headers: {
-        "X-RapidAPI-Key": "4e8a29ced8msh70ccb8b4c63f94ep157a4cjsnddad9329e7ab",
-        "X-RapidAPI-Host": "newsdata2.p.rapidapi.com",
-      },
-    };
+      const options = {
+        method: "GET",
+        url: "https://newsdata2.p.rapidapi.com/sources",
+        params: {
+          country: "us",
+          category: "technology",
+          language: "en",
+        },
+        headers: {
+          "X-RapidAPI-Key":
+            "4e8a29ced8msh70ccb8b4c63f94ep157a4cjsnddad9329e7ab",
+          "X-RapidAPI-Host": "newsdata2.p.rapidapi.com",
+        },
+      };
 
-    try {
-      const response = await axios.request(options);
-      console.log(response.data.results);
-      setNews(response.data.results);
-      setIsLoading(false);
-    } catch (error) {
-      console.error(error);
-      
-    }
+      try {
+        const response = await axios.request(options);
+        console.log(response.data.results);
+        setNews(response.data.results);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchNews();
   }, []);
-  
 
   return (
     <div className="news-container">
@@ -53,7 +51,7 @@ const News = () => {
           />
         </p>
       ) : news.length > 0 ? (
-        news.map((newsItem:any) => (
+        news.map((newsItem: any) => (
           <div className="news-item" key={newsItem.id}>
             <h3>
               <span id="title">{newsItem.name}</span>

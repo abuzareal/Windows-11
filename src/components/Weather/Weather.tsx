@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./Weather.scss";
 import axios from "axios";
 import { MdOutlineLocationOn } from "react-icons/md";
+import { WiSunrise, WiSunset } from "react-icons/wi";
 
 const Weather = () => {
   const [data, setData] = useState<Data | null>(null);
@@ -54,22 +55,20 @@ const Weather = () => {
           <h1 className="temp">{Math.round(data.main.temp)}°C</h1>
           <h3 className="main">{data.weather[0].main}</h3>
           <br />
-
           <MdOutlineLocationOn />
           <span className="location">
             {data.name}, {data.sys ? data.sys.country : null}
           </span>
           <br />
-          <span className="">
+          {/* <span className="">
             Pressure: {data.main.pressure}
             <br />
             Humidity: {data.main.humidity}
             <br />
-          </span>
-          <span>
-            Sunrise: {sunriseTime}
-            <br />
-            Sunset: {sunsetTime}
+          </span> */}
+          <WiSunrise size={18} /> {sunriseTime}
+          <span className="sun">
+            <WiSunset size={18} /> {sunsetTime}
           </span>
         </div>
       )}

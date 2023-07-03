@@ -31,15 +31,18 @@
     width: 100%;
     margin: 10px 0px;
   }
-
 }
 
-.location{
-    font-size: 1.5rem;
-    padding: 5px;
-    justify-content: space-evenly;
+.location {
+  font-size: 1.5rem;
+  padding: 5px;
+  justify-content: space-evenly;
 }
 
-.temp{
+.temp {
   font-size: 50px;
+}
+
+.sun {
+  margin-left: 20px;
 }
